@@ -1,24 +1,52 @@
+import { motion } from 'framer-motion';
+
 export default function Hero() {
   return (
     <section className="hero" id="home">
       <div className="container">
-        <div className="badge">INDIA'S NEXT GENERATION FRANCHISE ECOSYSTEM</div>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="badge"
+        >
+          INDIA'S NEXT GENERATION FRANCHISE ECOSYSTEM
+        </motion.div>
 
-        <h1>
+        <motion.h1
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.15 }}
+        >
           Building a business shouldn't mean starting alone. <span>Join ours.</span>
-        </h1>
+        </motion.h1>
 
-        <p className="hero-desc">
+        <motion.p
+          className="hero-desc"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.3 }}
+        >
           Build your business with the backing of a complete ecosystem. From technology and operations to training, marketing and ongoing support, <strong>Ricoz</strong> helps you focus on growth while we help simplify the journey.
-        </p>
+        </motion.p>
 
-        <div className="hero-btns">
+        <motion.div
+          className="hero-btns"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.45 }}
+        >
           <a href="#contact" className="btn btn-outline">Get in Touch</a>
           <a href="#franchise" className="btn btn-primary">Become a Franchise Partner</a>
-        </div>
+        </motion.div>
 
-        {/* Dashboard Mockup */}
-        <div className="dashboard-mock">
+        {/* Glass Dashboard */}
+        <motion.div
+          className="dashboard-mock"
+          initial={{ opacity: 0, y: 60, scale: 0.96 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ duration: 0.9, delay: 0.55, ease: [0.22, 1, 0.36, 1] }}
+        >
           <div className="dashboard-header">
             <div className="dot red"></div>
             <div className="dot yellow"></div>
@@ -38,30 +66,31 @@ export default function Hero() {
               <div className="panel-title">Dashboard</div>
               <div className="panel-sub">Welcome back, Amit! Here's your IT operations overview</div>
               <div className="stats-grid">
-                <div className="stat-card">
-                  <div className="label">Monthly Revenue</div>
-                  <div className="value">₹7,82,500</div>
-                  <div className="change">+24% from last month</div>
-                </div>
-                <div className="stat-card">
-                  <div className="label">Tickets Resolved</div>
-                  <div className="value">156</div>
-                  <div className="change">87.2% resolution rate</div>
-                </div>
-                <div className="stat-card">
-                  <div className="label">Open Tickets</div>
-                  <div className="value">23</div>
-                  <div className="change" style={{ color: '#dc2626' }}>5 critical</div>
-                </div>
-                <div className="stat-card">
-                  <div className="label">SLA Compliance</div>
-                  <div className="value">94.5%</div>
-                  <div className="change">Avg. response: 48 min</div>
-                </div>
+                {[
+                  { label: 'Monthly Revenue', value: '₹7,82,500', change: '+24% from last month', green: true },
+                  { label: 'Tickets Resolved', value: '156', change: '87.2% resolution rate', green: true },
+                  { label: 'Open Tickets', value: '23', change: '5 critical', green: false },
+                  { label: 'SLA Compliance', value: '94.5%', change: 'Avg. response: 48 min', green: true },
+                ].map((card, i) => (
+                  <motion.div
+                    key={i}
+                    className="stat-card"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.8 + i * 0.1, duration: 0.5 }}
+                    whileHover={{ y: -6 }}
+                  >
+                    <div className="label">{card.label}</div>
+                    <div className="value">{card.value}</div>
+                    <div className="change" style={{ color: card.green ? '#16a34a' : '#dc2626' }}>
+                      {card.change}
+                    </div>
+                  </motion.div>
+                ))}
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
