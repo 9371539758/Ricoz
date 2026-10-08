@@ -1,40 +1,74 @@
+import { motion } from 'framer-motion';
+
+const journeySteps = [
+  {
+    number: '01',
+    icon: '◎',
+    title: 'Express Interest',
+    description: 'Tell us about your goals and location preference.',
+  },
+  {
+    number: '02',
+    icon: '♙',
+    title: 'Get Onboarded',
+    description: 'Our team will guide you through the opportunity and process.',
+  },
+  {
+    number: '03',
+    icon: '↗',
+    title: 'Set Up & Launch',
+    description: 'Receive training and setup support, then go live with your business.',
+  },
+  {
+    number: '04',
+    icon: '✦',
+    title: 'Grow & Scale',
+    description: 'Leverage our platform, marketing and operational support to expand.',
+  },
+];
 
 export default function WhyRicoz() {
-  const features = [
-    {
-      icon: '✦',
-      title: 'Centralized Lead Generation',
-      desc: 'Receive customer inquiries through a unified platform and focus on converting opportunities into successful projects.',
-    },
-    {
-      icon: '⌂',
-      title: 'Complete Operational Support',
-      desc: 'Get assistance with business operations, workflows and service delivery so you can run your franchise with confidence.',
-    },
-    {
-      icon: '▦',
-      title: 'Technology-Powered Platform',
-      desc: 'Manage leads, projects, teams, finances and performance from a single business dashboard.',
-    },
-  ];
-
   return (
     <section className="why-section" id="why">
-      <div className="container">
-        <div className="section-label">WHY RICOZ</div>
-        <h2 className="section-title">Everything You Need To Build A Successful Franchise Business</h2>
-        <p className="section-desc">
-          Launch, manage and grow your business with a complete ecosystem designed for modern entrepreneurs. From technology and training to marketing and operational support, Ricoz helps you succeed at every stage.
-        </p>
+      <div className="container why-layout">
+        <aside className="why-sticky">
+          <div className="why-title-art" aria-hidden="true">
+            <span>WHY</span>
+            <strong>Ricoz?</strong>
+            <i />
+          </div>
+          <div className="section-label">WHY RICOZ</div>
+          <h2 className="section-title">The right partner makes all the difference.</h2>
+          <p className="section-desc">
+            Build with a team behind you. We bring the guidance, tools and operational support to help turn your ambition into a business that grows.
+          </p>
+        </aside>
 
-        <div className="features-grid">
-          {features.map((f, i) => (
-            <div className="feature-card" key={i}>
-              <div className="feature-icon">{f.icon}</div>
-              <h3>{f.title}</h3>
-              <p>{f.desc}</p>
-            </div>
-          ))}
+        <div className="journey-content">
+          <div className="journey-heading">
+            <span>HOW IT WORKS</span>
+            <h3>Your Journey as a Franchise Partner</h3>
+          </div>
+
+          <div className="journey-steps">
+            {journeySteps.map((step, index) => (
+              <motion.article
+                className={`journey-step journey-step-${index + 1}`}
+                key={step.number}
+                initial={{ opacity: 0, y: 36 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.35 }}
+                transition={{ duration: 0.55, delay: 0.05 }}
+              >
+                <div className="journey-step-icon">
+                  <span className="journey-step-number">{step.number}</span>
+                  <span aria-hidden="true">{step.icon}</span>
+                </div>
+                <h4>{step.title}</h4>
+                <p>{step.description}</p>
+              </motion.article>
+            ))}
+          </div>
         </div>
       </div>
     </section>
